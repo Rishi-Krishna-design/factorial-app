@@ -3,15 +3,19 @@ package com.example;
 public class FactorialApp {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Please provide a number.");
+            System.out.println("Please provide numbers.");
             return;
         }
-        try {
-            int n = Integer.parseInt(args[0]);
-            long factorial = calculateFactorial(n);
-            System.out.println("Factorial of " + n + " is " + factorial);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid number.");
+        for (String arg : args) {
+            try {
+                int n = Integer.parseInt(arg);
+                long factorial = calculateFactorial(n);
+                System.out.println("Factorial of " + n + " is " + factorial);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number: " + arg);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " for " + arg);
+            }
         }
     }
 
